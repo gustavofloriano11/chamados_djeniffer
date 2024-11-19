@@ -9,6 +9,13 @@
         $status = $_POST['status'];
         $data = $_POST['data'];
         $id_colaborador = $_POST['colaborador'];
+
+        if($id_cliente == null){
+            echo('Cliente inválido!');
+            ?>
+            <a href="../../frontend/index.html"><button>Voltar</button></a>
+            <?php die('😎')?>
+<?php   }
     
         if($id_colaborador == 0){
             $query = "INSERT INTO chamado (id_cliente, descricao, criticidade, status_chamado, data_abertura)

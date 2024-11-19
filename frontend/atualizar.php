@@ -1,23 +1,24 @@
 <?php 
 
-    include "../backend/db.php";
+    include("../backend/db.php");
+
+    $id = $_GET['id_chamado'];
 
     $query_cliente = $conn->query("SELECT * FROM cliente");
-
-    $query_colaborador = $conn->query("SELECT * FROM colaborador");
     
-?>
+    $query_colaborador = $conn->query("SELECT * FROM colaborador");
 
+?>
 
 <!DOCTYPE html>
 <html lang="PT-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abrir Chamado</title>
+    <title>Atualizar Chamado</title>
 </head>
 <body>
-    <h2>Insira os Dados do Problema:</h2>
+<h2>Insira os Dados do Problema:</h2>
     <form method="POST" action="../backend/create/create_chamado.php">
         <label for="cliente">Cliente:</label>
         <select name="cliente">
@@ -73,6 +74,5 @@
         <br>
         <button>Enviar</button>
     </form>
-    <p>*Caso seja o primeiro cadastro, não é necessário o código do colaborador.</p>
 </body>
 </html>

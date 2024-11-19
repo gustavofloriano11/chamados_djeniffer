@@ -7,7 +7,7 @@
         $email = $_POST['email'];
         $telefone = $_POST['telefone'];
 
-        $query = $conn->query("INSERT INTO cliente (nome, email, telefone)
+        $query = $conn->query("INSERT INTO cliente (nome_cliente, email, telefone)
         VALUES ('$nome', '$email', '$telefone')");
 
         if($query === TRUE){
