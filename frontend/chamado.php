@@ -21,8 +21,8 @@
     <form method="POST" action="../backend/create/create_chamado.php">
         <label for="cliente">Cliente:</label>
         <select name="cliente">
+        <?php if($query_cliente -> num_rows > 0){ ?>
             <option value="">Selecione uma Opção</option>
-            <?php if($query_cliente -> num_rows > 0){ ?>
                 
                 <?php while($row_cliente = $query_cliente->fetch_assoc()){
 
@@ -30,7 +30,9 @@
 
 <?php           }?>
 
-<?php       } ?>
+<?php       } else { ?>
+            <option> <?php echo 'Não há Clientes Cadastrados'; ?> </option>
+<?php } ?>
         </select>
         <br>
         <br>
@@ -58,12 +60,18 @@
         <br>
         <label for="descricao">Colaborador:</label>
         <select name="colaborador">
-            <option value="0">Selecione uma Opção</option>
-            <?php if($query_colaborador -> num_rows > 0){ ?>
+        <?php if($query_colaborador -> num_rows > 0){ ?>
+            <option value="">Selecione uma Opção</option>
+                
                 <?php while($row_colaborador = $query_colaborador->fetch_assoc()){
-                    ?> <option value="<?php echo $row_colaborador['id']; ?>"><?php echo $row_colaborador['nome_colaborador']; ?></option>
+
+                    ?> <option value="<?php echo $row_colaborador['id'];?>"><?php echo $row_colaborador['nome_colaborador']; ?></option>
+
 <?php           }?>
-<?php       } ?>
+
+<?php       } else { ?>
+            <option> <?php echo 'Não há Colaboradores Cadastrados'; ?> </option>
+<?php } ?>
         </select>
         <br>
         <br>
@@ -74,5 +82,6 @@
         <button>Enviar</button>
     </form>
     <p>*Caso seja o primeiro cadastro, não é necessário o código do colaborador.</p>
+    <a href="index.html"><button>Voltar</button></a>
 </body>
 </html>

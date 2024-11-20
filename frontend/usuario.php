@@ -7,6 +7,7 @@
     <title>Criar Usuário</title>
 </head>
 <body>
+    <h2>Registre um Cliente:</h2>
     <form method="POST" action="../backend/create/create_usuario.php">
         <label name="nome">Nome Completo:</label>
         <input type="text" name="nome">
@@ -22,5 +23,7 @@
         <br>
         <button>Enviar</button>
     </form>
+    <br>
+    <a href="index.html"><button>Voltar</button></a>
 </body>
 </html>

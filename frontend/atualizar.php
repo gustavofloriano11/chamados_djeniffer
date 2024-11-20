@@ -2,11 +2,25 @@
 
     include("../backend/db.php");
 
-    $id = $_GET['id_chamado'];
+    $id_chamado = $_GET['id'];
 
-    $query_cliente = $conn->query("SELECT * FROM cliente");
-    
+    $query_chamado = $conn->query("SELECT * FROM chamado WHERE id = $id_chamado");
+
     $query_colaborador = $conn->query("SELECT * FROM colaborador");
+
+    $query_id_cliente = $conn->query("SELECT id_cliente FROM chamado WHERE id = $id_chamado");
+
+    $result = $query_id_cliente->fetch_assoc();
+
+    $row_chamado = $query_chamado->fetch_assoc();
+
+    $id_cliente = $result['id_cliente'];
+
+    $query_cliente = $conn->query("SELECT * FROM cliente WHERE id = $id_cliente");
+
+    $row_cliente = $query_cliente->fetch_assoc();
+
+    
 
 ?>
 
@@ -19,32 +33,30 @@
 </head>
 <body>
 <h2>Insira os Dados do Problema:</h2>
-    <form method="POST" action="../backend/create/create_chamado.php">
+    <form method="POST" action="../backend/create/update_chamado.php">
         <label for="cliente">Cliente:</label>
         <select name="cliente">
-            <option value="">Selecione uma Opção</option>
             <?php if($query_cliente -> num_rows > 0){ ?>
-                
-                <?php while($row_cliente = $query_cliente->fetch_assoc()){
-
-                    ?> <option value="<?php echo $row_cliente['id'];?>"><?php echo $row_cliente['nome_cliente']; ?></option>
-
-<?php           }?>
-
+                <option value="<?php echo $row_cliente['id'];?>"><?php echo $row_cliente['nome_cliente']; ?></option>
 <?php       } ?>
         </select>
         <br>
         <br>
         <label for="descricao">Descrição do Problema:</label>
-        <textarea name="descricao"></textarea>
+        <textarea name="descricao">
+            <?php if($query_chamado -> num_rows > 0){
+                echo $row_chamado['descricao'];
+            } ?>
+        </textarea>
         <br>
         <br>
         <label for="criticidade">Criticidade:</label>
         <select name="criticidade">
-            <option value="null">Selecione uma Opção</option>
-            <option value="baixa">Baixa</option>
-            <option value="media">Média</option>
-            <option value="alta">Alta</option>
+            <option value="<?php echo $row_chamado['criticidade'] ?>">
+                <?php if($query_chamado -> num_rows > 0){
+                    echo $row_chamado['criticidade'];
+                } ?>
+            </option>
         </select>
         <br>
         <br>

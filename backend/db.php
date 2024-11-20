@@ -2,7 +2,7 @@
 
     define("servername", "localhost");
     define("username", "root");
-    define("password", "root");
+    define("password", ""); //depois colocar o password denovo
     define("dbname", "chamados");
 
     $conn = new mysqli(servername, username, password, dbname);
